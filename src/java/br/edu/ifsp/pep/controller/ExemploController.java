@@ -3,7 +3,9 @@ package br.edu.ifsp.pep.controller;
 import br.edu.ifsp.pep.model.Pessoa;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -26,7 +28,34 @@ public class ExemploController implements Serializable {
     }
 
     public void excluir() {
-this.pessoas.remove(this.pessoa);
+        int a = 300;
+        if (pessoa != null && !pessoa.getNome().isEmpty())
+ { 
+     a = 0;
+            for (Pessoa p : this.pessoas) {
+                if (p.getNome().equals(pessoa.getNome())) {
+                    pessoas.remove(pessoa);
+                    addMessage(FacesMessage.SEVERITY_INFO, "Informação", "Pessoa excluida");
+                    return;
+
+                }
+
+            }
+
+            for (Pessoa p : this.pessoas) {
+                if (p.getNome().equals(pessoa.getNome())) {
+                    a++;
+                }
+            }
+ 
+
+        }
+        if (a < 300) {
+            addMessage(FacesMessage.SEVERITY_INFO, "Informação", "Pessoa excluida");
+        } else if (pessoa.getNome().equals("") && pessoas.isEmpty()) {
+            addMessage(FacesMessage.SEVERITY_INFO, "Informação", "Selecione uma pessoa");
+        }
+        this.pessoas.remove(this.pessoa);
 
     }
 
