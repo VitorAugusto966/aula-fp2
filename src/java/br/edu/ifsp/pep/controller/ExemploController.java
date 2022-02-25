@@ -25,19 +25,24 @@ public class ExemploController implements Serializable {
         this.pessoa = new Pessoa();
     }
 
+    public void excluir() {
+this.pessoas.remove(this.pessoa);
+
+    }
+
     public void teste() {
         System.out.println("Executou o método teste.");
         System.out.println("Nome: " + this.pessoa.getNome());
     }
-    
+
     public void adicionar() {
         System.out.println("adicionou pessoa na lista.");
         this.pessoas.add(pessoa);
         this.pessoa = new Pessoa();
         addMessage(FacesMessage.SEVERITY_INFO, "Informação", "Cadastro realizado.");
-        
+
     }
-    
+
     private void addMessage(FacesMessage.Severity severity, String summary, String detail) {
         FacesContext.getCurrentInstance().
                 addMessage(null, new FacesMessage(severity, summary, detail));
